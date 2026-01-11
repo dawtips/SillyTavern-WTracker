@@ -42774,6 +42774,7 @@ function _initializeGlobalUI() {
           globalContext.eventSource.on(types_1.EventNames.USER_MESSAGE_RENDERED, function (messageId) {
             return outgoingTypes.includes(settings.autoMode) && generateTracker(messageId);
           });
+          globalContext.eventSource.on(types_1.EventNames.GENERATION_STOPPED, function () {});
           globalContext.eventSource.on(types_1.EventNames.CHAT_CHANGED, function () {
             var saveChat = globalContext.saveChat;
             var chatModified = false;
