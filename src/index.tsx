@@ -273,8 +273,12 @@ async function generateTracker(id: number) {
     };
 
     if (settings.promptEngineeringMode === PromptEngineeringMode.NATIVE) {
-      messages.push({ content: settings.prompt, role: 'user' });
-      const result = await makeRequest(messages, {
+      const cleanedMessages = messages.map(obj => ({
+        role: obj.role,
+        content: obj.content
+      }));
+      cleanedMessages.push({ content: settings.prompt, role: 'user' });
+      const result = await makeRequest(cleanedMessages, {
         json_schema: { name: 'SceneTracker', strict: true, value: chatJsonValue },
       });
       // @ts-ignore

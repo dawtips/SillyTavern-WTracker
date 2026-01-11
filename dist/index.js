@@ -42490,7 +42490,7 @@ function generateTracker(_x3) {
 function _generateTracker() {
   _generateTracker = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(id) {
     var _extensionSettings$co;
-    var message, requestId, settings, context, chatMetadata, extensionSettings, CONNECT_API_MAP, saveChat, chatJsonValue, chatHtmlValue, profile, apiMap, characterId, messageBlock, mainButton, regenerateButton, detailsState, existingTracker, detailsElements, promptResult, messages, response, makeRequest, result, format, promptTemplate, exampleResponse, finalPrompt, rest, newTracker, newDetailsElements, _t2, _t3;
+    var message, requestId, settings, context, chatMetadata, extensionSettings, CONNECT_API_MAP, saveChat, chatJsonValue, chatHtmlValue, profile, apiMap, characterId, messageBlock, mainButton, regenerateButton, detailsState, existingTracker, detailsElements, promptResult, messages, response, makeRequest, cleanedMessages, result, format, promptTemplate, exampleResponse, finalPrompt, rest, newTracker, newDetailsElements, _t2, _t3;
     return _regenerator().w(function (_context4) {
       while (1) switch (_context4.p = _context4.n) {
         case 0:
@@ -42596,12 +42596,18 @@ function _generateTracker() {
             _context4.n = 7;
             break;
           }
-          messages.push({
+          cleanedMessages = messages.map(function (obj) {
+            return {
+              role: obj.role,
+              content: obj.content
+            };
+          });
+          cleanedMessages.push({
             content: settings.prompt,
             role: 'user'
           });
           _context4.n = 6;
-          return makeRequest(messages, {
+          return makeRequest(cleanedMessages, {
             json_schema: {
               name: 'SceneTracker',
               strict: true,
