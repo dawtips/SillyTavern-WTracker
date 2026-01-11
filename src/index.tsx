@@ -400,7 +400,7 @@ async function initializeGlobalUI() {
   
   globalContext.eventSource.on(
     EventNames.GENERATION_STOPPED,
-    () => { }
+    () => {  }
   );
   globalContext.eventSource.on(EventNames.CHAT_CHANGED, () => {
     const { saveChat } = globalContext;
