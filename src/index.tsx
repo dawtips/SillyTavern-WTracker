@@ -397,6 +397,10 @@ async function initializeGlobalUI() {
     EventNames.USER_MESSAGE_RENDERED,
     (messageId: number) => outgoingTypes.includes(settings.autoMode) && generateTracker(messageId),
   );
+  globalContext.eventSource.on(
+    EventNames.GENERATION_STOPPED,
+    (messageId: number) => true,
+  );
   globalContext.eventSource.on(EventNames.CHAT_CHANGED, () => {
     const { saveChat } = globalContext;
     let chatModified = false;
